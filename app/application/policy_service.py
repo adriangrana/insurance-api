@@ -15,7 +15,7 @@ class PolicyService:
     user = next((client for client in clients if client.name == user_name), None)
     if user:
       policies = await self.policy_repo.fetch_policies()
-      return [policy for policy in policies if policy.client_id == user.id]
+      return [policy for policy in policies if policy.clientId == user.id]
     raise UserNotFoundException(f"User with name {user_name} not found")
 
   async def get_user_by_policy_number(self, policy_id: str) -> Optional[Client]:
@@ -23,5 +23,5 @@ class PolicyService:
     policy = next((policy for policy in policies if policy.id == policy_id), None)
     if policy:
       clients = await self.client_repo.fetch_clients()
-      return next((client for client in clients if client.id == policy.client_id), None)
+      return next((client for client in clients if client.id == policy.clientId), None)
     raise PolicyNotFoundException(f"Policy with id {policy_id} not found")

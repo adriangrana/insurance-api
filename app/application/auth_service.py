@@ -23,15 +23,15 @@ class AuthService:
 	async def authenticate_user(self, username: str, password: str):
 		user = await self.user_repo.find_user_by_username(username)
 		if user and self.verify_password(password, user.hashed_password):
-				return user
+			return user
 		return False
 
 	def create_access_token(self, data: dict, expires_delta: timedelta = None):
 		to_encode = data.copy()
 		if expires_delta:
-				expire = datetime.utcnow() + expires_delta
+			expire = datetime.utcnow() + expires_delta
 		else:
-				expire = datetime.utcnow() + timedelta(minutes=15)
+			expire = datetime.utcnow() + timedelta(minutes=15)
 		to_encode.update({"exp": expire})
 		encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 		return encoded_jwt

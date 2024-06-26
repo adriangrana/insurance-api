@@ -1,20 +1,21 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from app.infrastructure.config import settings
 
-class MongoDB:
+from app.infrastructure.config import Settings
+
+
+class Database:
 	client: AsyncIOMotorClient = None
+	db = None
 
+	@classmethod
+	async def connect(cls):
+		cls.client = AsyncIOMotorClient(Settings.mongodb_uri)
+		cls.db = cls.client[Settings.mongodb_db]
+		print("Connected to MongoDB")
 
-db = MongoDB()
-print(settings.mongodb_uri)
+	@classmethod
+	async def close(cls):
+		cls.client.close()
+		print("Closed MongoDB connection")
 
-
-async def connect_to_mongo():
-	print("Connecting to MongoDB")
-	db.client = AsyncIOMotorClient(settings.mongodb_uri + "/"+settings.mongodb_db)
-	print("Connected to MongoDB")
-
-
-async def close_mongo_connection():
-	db.client.close()
-	print("Closed MongoDB connection")
+db = Database()

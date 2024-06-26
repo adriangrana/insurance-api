@@ -2,8 +2,8 @@ from pydantic import BaseModel
 
 class Policy(BaseModel):
   id: str
-  amount_insured: float
+  amountInsured: float
   email: str
-  inception_date: str
-  installment_payment: bool
-  client_id: str
+  inceptionDate: str
+  installmentPayment: bool
+  clientId: str

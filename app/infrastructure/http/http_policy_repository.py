@@ -10,14 +10,4 @@ class PolicyServiceAdapter(PolicyRepository):
 			response = await client.get(settings.policy_service_url)
 			response.raise_for_status()
 			policies_data = response.json()
-			return [
-				Policy(
-					id=policy["id"],
-					amount_insured=policy["amountInsured"],
-					email=policy["email"],
-					inception_date=policy["inceptionDate"],
-					installment_payment=policy["installmentPayment"],
-					client_id=policy["clientId"],
-				)
-				for policy in policies_data
-			]
+			return [Policy(**policy) for policy in policies_data]

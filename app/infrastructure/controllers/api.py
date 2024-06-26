@@ -7,7 +7,7 @@ from app.domain.exceptions import PolicyNotFoundException, UserNotFoundException
 from app.domain.models.client import Client
 from app.domain.models.policy import Policy
 from app.domain.models.user import User
-from app.infrastructure.database.mongodb import connect_to_mongo, close_mongo_connection
+from app.infrastructure.database.mongodb import db
 from app.dependencies import role_required
 from .auth import router as auth_router
 from app.infrastructure.http.http_client_repository import ClientServiceAdapter
@@ -15,9 +15,9 @@ from app.infrastructure.http.http_policy_repository import PolicyServiceAdapter
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await connect_to_mongo()
+    await db.connect()
     yield
-    await close_mongo_connection()
+    await db.close()
 
 app = FastAPI(
     title="Insurance Management API",

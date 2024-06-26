@@ -3,6 +3,9 @@ uvicorn
 httpx
 pydantic
 pytest
+pytest-cov
+pytest-mock
+pytest-asyncio
 python-jose
 motor
 passlib[bcrypt]
