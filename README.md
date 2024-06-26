@@ -6,6 +6,13 @@
 
 This project is a Web API that manages insurance policies and company clients. It is built using the FastAPI framework and follows the hexagonal architecture pattern.
 
+## Desitions
+- Create a mongo db to store users and create a oauth system
+- Take the registered users in mongodb for the authorization because the clients in the https://run.mocky.io/v3/d70ddb79-89af-4959-8fc1-f24c2ca9839c only have a role per users, and some endpoints require 2 roles to get access. For that reason the users store in mongodb has a list of roles and a hashed password to make the authentication and return a jwt token.
+- Create a create_user.py to store users in db.
+- Create a clean.sh script to clean all auto generated files.
+- Create a dockerfile to deploy the api if is needed. To test this in local should put the mongo docker container in the same network that insurance-api docker container to ensure the communicaction between them.
+
 ## Endpoints
 - `POST /auth/token`: Login with an exist user in mongo db and retun a jwt token require by all others endpoints for the authorization.
 - `GET /users/{user_id}`: Get user data filtered by user id (accessible by users with role "users" and "admin").
