@@ -18,4 +18,4 @@ class UserServiceAdapter:
 		return None
 
 	async def create_user(self, user: User):
-		await self.collection.insert_one(user.model_dump())
+		await self.collection.insert_one(user)

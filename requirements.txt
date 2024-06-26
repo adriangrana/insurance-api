@@ -7,5 +7,7 @@ pytest-cov
 pytest-mock
 pytest-asyncio
 python-jose
+pytest_httpx
 motor
 passlib[bcrypt]
+bcrypt==3.2.0

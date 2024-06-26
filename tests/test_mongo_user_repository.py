@@ -27,5 +27,5 @@ async def test_should_create_user(mock_db, test_user_admin):
   adapter = UserServiceAdapter(mydb=mock_db)
   adapter.collection.insert_one = AsyncMock()
   await adapter.create_user(test_user_admin)
-  adapter.collection.insert_one.assert_called_once_with(test_user_admin.model_dump())
-  adapter.collection.insert_one.assert_awaited_once_with(test_user_admin.model_dump())
+  adapter.collection.insert_one.assert_called_once_with(test_user_admin)
+  adapter.collection.insert_one.assert_awaited_once_with(test_user_admin)
