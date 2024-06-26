@@ -13,11 +13,56 @@ This project is a Web API that manages insurance policies and company clients. I
 - `GET /policies/user/{user_name}`: Get the list of policies linked to a user name (accessible by users with role "admin").
 - `GET /users/policy/{policy_id}`: Get the user linked to a policy number (accessible by users with role "admin").
 
+## Folder Structure
+
+```sh
+app/
+├── application/
+│   ├── services/
+│   │   └── auth_service.py
+│   │   └── client_service.py
+│   │   └── policy_service.py
+├── domain/
+│   ├── models/
+│   │   └── client.py
+│   │   └── policy.py
+│   │   └── user.py
+│   ├── repositories/
+│   │   └── client_repository.py
+│   │   └── policy_repository.py
+│   │   └── user_repository.py
+│   └── exceptions.py
+├── infrastructure/
+│   ├── controllers/
+│   │   └── insurance.py
+│   │   └── auth.py
+│   ├── database/
+│   │   ├── mongodb.py
+│   │   └── mongo_user_repository.py
+│   ├── http/
+│   │   ├── http_client_repository.py
+│   │   └── http_policy_repository.py
+│   └── config.py
+├── dependencies.py
+└── main.py
+test/
+├── conftest.py
+├── test_auth.py
+├── test_insurance.py
+├── test_auth_service.py
+├── test_client_service.py
+├── test_policy_service.py
+├── test_client_service.py
+├── test_http_client_repository.py
+├── test_http_policy_repository.py
+└── test_mongo_user_repository.py
+
+```
 ## Setup
 
 1. Clone the repository:
     ```sh
-    git clone <repository_url>
+    git clone https://github.com/adriangrana/insurance-api.git
     cd insurance-api
     ```
 
@@ -58,6 +103,7 @@ To run the tests, use the following command:
 ```sh
 pytest -v
 ```
+
 
 ### requirements.txt
 
