@@ -2,7 +2,7 @@ import httpx
 from typing import List
 from app.domain.models.client import Client
 from app.domain.repositories.client_repository import ClientRepository
-from app.config import settings
+from app.infrastructure.config import settings
 
 class ClientServiceAdapter(ClientRepository):
   async def fetch_clients(self) -> List[Client]:

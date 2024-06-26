@@ -2,7 +2,7 @@ import httpx
 from typing import List
 from app.domain.models.policy import Policy
 from app.domain.repositories.policy_repository import PolicyRepository
-from app.config import settings
+from app.infrastructure.config import settings
 
 class PolicyServiceAdapter(PolicyRepository):
 	async def fetch_policies(self) -> List[Policy]:

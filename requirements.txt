@@ -3,3 +3,6 @@ uvicorn
 httpx
 pydantic
 pytest
+python-jose
+motor
+passlib[bcrypt]
